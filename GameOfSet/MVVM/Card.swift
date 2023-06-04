@@ -8,8 +8,7 @@
 import Foundation
 
 
-struct Card {
-    
+struct Card: Identifiable {
     var isSelected: Bool = false
     var isSet: Bool = false
     var isInTheDeck = true

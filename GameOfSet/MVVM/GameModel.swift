@@ -18,8 +18,18 @@ struct GameModel {
     
     var setCards = [Card]()
     
+    var cardsOnBoard = [Card]()
+    
     func choose(card: Card) {
         
+    }
+    
+    mutating func startNewGame() {
+        for _ in 1...12 {
+            if let card = deck.randomElement() {
+                cardsOnBoard.append(card)
+            }
+        }
     }
     
     init() {
@@ -30,7 +40,7 @@ struct GameModel {
                 for shading in Shading.allCases {
                     for number in Number.allCases {
                         let content = CardContent(shape: shepe, color: color, number: number, shading: shading)
-                        let card = Card(cardContent: content, id: 0)
+                        let card = Card(cardContent: content, id: count)
                         deck.append(card)
                         count += 1
                     }
@@ -38,13 +48,10 @@ struct GameModel {
             }
         }
         self.deck = deck.shuffled()
+        startNewGame()
     }
     
     
-    private func createCard(color: ColorType, number: Number, shape: ShapeType, shading: Shading, id: Int ) -> Card {
-        let cardContent = CardContent(shape: shape, color: color, number: number, shading: shading)
-        return Card(cardContent: cardContent, id: id)
-    }
     
 
 }
