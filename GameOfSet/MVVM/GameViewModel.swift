@@ -9,24 +9,27 @@ import SwiftUI
 
 struct GameViewModel {
     
+    //MARK: Properties
+
     var deck: [Card] {
         model.deck
     }
     
-    var setCards: [Card]  {
-        model.setCards
-    }
     var cardsOnBoard: [Card]  {
         model.cardsOnBoard
     }
     
-    var model = GameModel()
+    private var model = GameModel()
     
-    func choose(card: Card) {
-        model.choose(card: card)
-        
+    //MARK: Game funcs
+
+    mutating func deal() {
+        model.dealThreeMore()
     }
     
+    mutating func newGame() {
+        model.startNewGame()
+    }
     
     func getColor(card: Card) -> Color {
         switch card.cardContent.color {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let viewModel = GameViewModel()
+    @State var viewModel = GameViewModel()
     var body: some View {
         AspectVGrid(items: viewModel.cardsOnBoard, aspectRatio: 2/3) { card in
             CardView(card: card, color: viewModel.getColor(card: card))
@@ -17,6 +17,32 @@ struct ContentView: View {
         }
         .foregroundColor(.indigo)
         .padding(.horizontal)
+        Spacer()
+        HStack {
+            newGameButton
+                .padding(.horizontal)
+            Spacer()
+            dealButton
+                .padding(.horizontal)
+
+        }
+    }
+    
+    private var newGameButton: some View {
+        Button("New Game") {
+            viewModel.newGame()
+        }
+    }
+    
+    private var dealButton: some View {
+        Button {
+            viewModel.deal()
+            print("cards on board: \(viewModel.cardsOnBoard.count)")
+            print("cards in the deck: \(viewModel.deck.count)")
+
+        } label: {
+            Image(systemName: "plus.circle.fill")
+        }
     }
 }
 

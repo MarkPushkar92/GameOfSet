@@ -13,28 +13,33 @@ struct GameModel {
     typealias Number = CardContent.Number
     typealias ShapeType = CardContent.ShapeType
     typealias Shading = CardContent.Shading
-
+    
+    //MARK: Properites
+        
     private(set) var deck: [Card]
-    
-    var setCards = [Card]()
-    
+        
     var cardsOnBoard = [Card]()
     
-    func choose(card: Card) {
-        
-    }
+//    var setCards = [Card]()
+//
+//    var currentlyChosenCards = [Card]()
     
-    mutating func startNewGame() {
-        for _ in 1...12 {
-            if let card = deck.randomElement() {
+    //MARK: Game funcs
+        
+    mutating func dealThreeMore() {
+        for _ in 0...2 {
+            if let card = deck.first {
                 cardsOnBoard.append(card)
+                deck.removeFirst()
             }
         }
     }
     
-    init() {
-        var deck: [Card] = []
+    mutating func startNewGame() {
+        
+        deck = []
         var count = 0
+        
         for color in ColorType.allCases {
             for shepe in ShapeType.allCases {
                 for shading in Shading.allCases {
@@ -47,12 +52,22 @@ struct GameModel {
                 }
             }
         }
-        self.deck = deck.shuffled()
-        startNewGame()
+        cardsOnBoard = []
+        deck.shuffle()
+        for _ in 0...11 {
+            if let card = deck.first {
+                cardsOnBoard.append(card)
+                deck.removeFirst()
+            }
+        }
     }
     
+    //MARK: Init
     
-    
+    init() {
 
+        self.deck = []
+        startNewGame()
+    }
 }
 
