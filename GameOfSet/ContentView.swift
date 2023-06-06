@@ -14,6 +14,11 @@ struct ContentView: View {
         AspectVGrid(items: viewModel.cardsOnBoard, aspectRatio: 2/3) { card in
             CardView(card: card, color: viewModel.getColor(card: card))
                 .padding(4)
+                .onTapGesture {
+                    viewModel.selectCard(card)
+                }
+         
+                
         }
         .foregroundColor(.indigo)
         .padding(.horizontal)

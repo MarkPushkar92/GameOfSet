@@ -16,7 +16,7 @@ struct CardSubView: View {
     var body: some View {
         VStack {
             Spacer()
-            switch card.cardContent.number {
+            switch card.number {
                 case .one:
                 shapeToUse()
                 case .two:
@@ -45,7 +45,7 @@ struct CardSubView: View {
                 let oval = Capsule()
                 let squiggle = Rectangle()
                 
-                switch card.cardContent.shape {
+                switch card.shape {
                     case .diamond:
                         diamondBorder
                         shadingToUse(width: width,height: height).mask(diamond)
@@ -62,7 +62,7 @@ struct CardSubView: View {
         
         @ViewBuilder
         private func shadingToUse(width: CGFloat, height: CGFloat) -> some View {
-            switch card.cardContent.shading {
+            switch card.shading {
             case .open:
                 Color.clear
             case .solid:

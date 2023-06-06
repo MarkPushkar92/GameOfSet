@@ -22,6 +22,10 @@ struct GameViewModel {
     private var model = GameModel()
     
     //MARK: Game funcs
+    
+    mutating func selectCard(_ card: Card) {
+        model.selectCard(card)
+    }
 
     mutating func deal() {
         model.dealThreeMore()
@@ -32,7 +36,7 @@ struct GameViewModel {
     }
     
     func getColor(card: Card) -> Color {
-        switch card.cardContent.color {
+        switch card.color {
         case .red:
             return Color.red
         case .green:

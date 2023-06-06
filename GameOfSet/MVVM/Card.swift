@@ -8,16 +8,12 @@
 import Foundation
 
 
-struct Card: Identifiable {
+struct Card: Identifiable, Equatable {
     var isSelected: Bool = false
     var isSet: Bool = false
     var isInTheDeck = true
-    let cardContent: CardContent
+  //  let cardContent: CardContent
     let id: Int
-}
-
-
-struct CardContent  {
     
     let shape: ShapeType
     let color: ColorType
@@ -48,6 +44,40 @@ struct CardContent  {
         case three = 3
     }
 
-          
 }
 
+
+//struct CardContent  {
+//
+//    let shape: ShapeType
+//    let color: ColorType
+//    let number: Number
+//    let shading: Shading
+//
+//    enum Shading: CaseIterable {
+//        case solid
+//        case open
+//        case transparent
+//    }
+//
+//    enum ShapeType: CaseIterable {
+//        case diamond
+//        case rectangle
+//        case oval
+//    }
+//
+//    enum ColorType: CaseIterable {
+//        case red
+//        case green
+//        case purple
+//    }
+//
+//    enum Number: Int, CaseIterable {
+//        case one = 1
+//        case two = 2
+//        case three = 3
+//    }
+//
+//
+//}
+//
