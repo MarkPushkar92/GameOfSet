@@ -11,10 +11,6 @@ struct GameViewModel {
     
     //MARK: Properties
 
-    var deck: [Card] {
-        model.deck
-    }
-    
     var cardsOnBoard: [Card]  {
         model.cardsOnBoard
     }

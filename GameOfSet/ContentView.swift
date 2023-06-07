@@ -12,13 +12,22 @@ struct ContentView: View {
     @State var viewModel = GameViewModel()
     var body: some View {
         AspectVGrid(items: viewModel.cardsOnBoard, aspectRatio: 2/3) { card in
-            CardView(card: card, color: viewModel.getColor(card: card))
+            let cardView = CardView(card: card, color: viewModel.getColor(card: card))
                 .padding(4)
                 .onTapGesture {
                     viewModel.selectCard(card)
                 }
-         
-                
+            if card.isSelected {
+                if card.isSet {
+                    cardView.foregroundColor(.red)
+                } else {
+                    cardView
+                        .foregroundColor(.yellow)
+                }
+            
+            } else {
+                cardView
+            }
         }
         .foregroundColor(.indigo)
         .padding(.horizontal)
@@ -42,9 +51,6 @@ struct ContentView: View {
     private var dealButton: some View {
         Button {
             viewModel.deal()
-            print("cards on board: \(viewModel.cardsOnBoard.count)")
-            print("cards in the deck: \(viewModel.deck.count)")
-
         } label: {
             Image(systemName: "plus.circle.fill")
         }
