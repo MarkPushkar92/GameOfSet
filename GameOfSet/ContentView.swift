@@ -11,7 +11,7 @@ struct ContentView: View {
     
     @State var viewModel = GameViewModel()
     var body: some View {
-        AspectVGrid(items: viewModel.cardsOnBoard, aspectRatio: 2/3) { card in
+        AspectScrollVGrid(items: viewModel.cardsOnBoard, aspectRatio: 2/3) { card in
             let cardView = CardView(card: card, color: viewModel.getColor(card: card))
                 .padding(4)
                 .onTapGesture {
@@ -68,9 +68,8 @@ struct CardView: View {
                 shape.fill().foregroundColor(.white)
                     shape.strokeBorder(lineWidth: DrawingConstants.lineWidth)
                         .padding(5).opacity(0.5)
-                CardSubView(card: card, color: color, size: geometry.size)
+                CardSubView(card: card, color: color, size: geometry.size).padding(7)
            }
-            
         }
     }
     
@@ -81,17 +80,6 @@ struct CardView: View {
         
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 struct ContentView_Previews: PreviewProvider {

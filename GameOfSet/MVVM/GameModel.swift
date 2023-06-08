@@ -75,12 +75,23 @@ struct GameModel {
     }
     
     mutating func dealThreeMore() {
+        if currentlyChosenCards.count == 3 {
+            // Removing SET cards
+            if checkIfSet(currentlyChosenCards) {
+                for cardToRemove in currentlyChosenCards {
+                    cardsOnBoard.removeAll { card in
+                        cardToRemove.id == card.id
+                    }
+                }
+            }
+        }
         for _ in 0...2 {
             if let card = deck.first {
                 cardsOnBoard.append(card)
                 deck.removeFirst()
             }
         }
+        print(deck.count)
     }
     
     mutating func startNewGame() {
